@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodPrices.Web", "FoodPrices.Web\FoodPrices.Web.csproj", "{A0E607B7-3C74-4240-99F1-0E4223203186}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodPrices.Web", "FoodPrices.Web\FoodPrices.Web.csproj", "{A0E607B7-3C74-4240-99F1-0E4223203186}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodPrices.Services", "FoodPrices.Services\FoodPrices.Services.csproj", "{E63D9C85-85F4-4DC1-BFCB-AFBE40EA273D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodPrices.Services", "FoodPrices.Services\FoodPrices.Services.csproj", "{E63D9C85-85F4-4DC1-BFCB-AFBE40EA273D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{509683A9-007C-4DF0-BE16-AF09BEDD16E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E474D2EB-88DC-4C75-A196-D86A90EA03A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodPrices.Services.UnitTests", "tests\FoodPrices.Services.UnitTests\FoodPrices.Services.UnitTests.csproj", "{CA79AC21-7D9E-4ED3-A0C6-B892F62CD2B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +27,18 @@ Global
 		{E63D9C85-85F4-4DC1-BFCB-AFBE40EA273D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E63D9C85-85F4-4DC1-BFCB-AFBE40EA273D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E63D9C85-85F4-4DC1-BFCB-AFBE40EA273D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA79AC21-7D9E-4ED3-A0C6-B892F62CD2B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA79AC21-7D9E-4ED3-A0C6-B892F62CD2B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA79AC21-7D9E-4ED3-A0C6-B892F62CD2B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA79AC21-7D9E-4ED3-A0C6-B892F62CD2B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A0E607B7-3C74-4240-99F1-0E4223203186} = {E474D2EB-88DC-4C75-A196-D86A90EA03A7}
+		{E63D9C85-85F4-4DC1-BFCB-AFBE40EA273D} = {E474D2EB-88DC-4C75-A196-D86A90EA03A7}
+		{CA79AC21-7D9E-4ED3-A0C6-B892F62CD2B4} = {509683A9-007C-4DF0-BE16-AF09BEDD16E2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {72B07B8B-AB40-41C6-B1ED-47D3D1C79E89}
