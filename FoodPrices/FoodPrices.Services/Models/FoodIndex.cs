@@ -2,14 +2,6 @@
 {
     public class FoodIndex
     {
-        public FoodIndex(int id, string description, DateTimeOffset quoteDate, decimal highPrice)
-        {
-            Id = id;
-            Description = description;
-            QuoteDate = quoteDate;
-            HighPrice = highPrice;
-        }
-
         /// <summary>
         /// Unique identifier
         /// </summary>
@@ -23,13 +15,8 @@
         public string Description { get; set; }
 
         /// <summary>
-        /// The date of the quote
+        /// Collection of quotes
         /// </summary>
-        public DateTimeOffset QuoteDate { get; set; }
-
-        /// <summary>
-        /// Highest price
-        /// </summary>
-        public decimal HighPrice { get; set; }
+        public IEnumerable<Quote> Quotes { get; set; }
     }
 }
