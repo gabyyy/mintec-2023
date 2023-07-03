@@ -1,3 +1,4 @@
+using FoodPrices.Services.DelegatingHandlers;
 using FoodPrices.Services.Options;
 using FoodPrices.Services.Services;
 using FoodPrices.Web.MappingProfiles;
@@ -6,10 +7,11 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddTransient<UrnerBarryAuthenticationHandler>();
 builder.Services.AddHttpClient<IFoodIndexService, FoodIndexService>(client =>
 {
     client.BaseAddress = new Uri(builder.Configuration["UrnerBarry:BaseUrl"]);
-});
+}).AddHttpMessageHandler<UrnerBarryAuthenticationHandler>();
 
 // Options
 builder.Services.Configure<UrnerBarryOptions>(builder.Configuration.GetSection("UrnerBarry"));
