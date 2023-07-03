@@ -1,5 +1,8 @@
-﻿using FoodPrices.Services.Models;
+﻿using FoodPrices.Services.Exceptions;
+using FoodPrices.Services.Models;
+using Microsoft.Extensions.Logging;
 using System.Net.Http.Json;
+using System.Text.Json;
 
 namespace FoodPrices.Services.Services
 {
@@ -7,11 +10,13 @@ namespace FoodPrices.Services.Services
     {
         private readonly HttpClient httpClient;
         private readonly ICurrencyService currencyService;
+        private readonly ILogger<FoodIndexService> logger;
 
-        public FoodIndexService(HttpClient httpClient, ICurrencyService currencyService)
+        public FoodIndexService(HttpClient httpClient, ICurrencyService currencyService, ILogger<FoodIndexService> logger)
         {
             this.httpClient = httpClient;
             this.currencyService = currencyService;
+            this.logger = logger;
         }
 
         public async Task<IList<FoodIndex>> GetAll(string currencyCode)
@@ -39,13 +44,23 @@ namespace FoodPrices.Services.Services
                 var foodIndex = new FoodIndex(item.ComCode, item.Description);
                 foreach (var marketdata in item.MarketData)
                 {
-                    //TODO: take currency code from items[].currency
-                    var convertedAmount = await this.currencyService.Convert("USD", currencyCode, marketdata.High, marketdata.QuoteDate);
-                    foodIndex.Quotes.Add(new Quote()
+                    try
                     {
-                        HighPrice = convertedAmount,
-                        Date = marketdata.QuoteDate
-                    });
+                        var convertedAmount = await this.currencyService.Convert(currencyCode, marketdata.High, marketdata.QuoteDate);
+                        foodIndex.Quotes.Add(new Quote()
+                        {
+                            HighPrice = convertedAmount,
+                            Date = marketdata.QuoteDate
+                        });
+                    }
+                    catch (CurrencyConversionException ex)
+                    {
+                        this.logger.LogError(ex,
+                            "Error when converting marketDataItem {marketDataItem} for item {comCode} with currency {currencyCode}",
+                            JsonSerializer.Serialize(marketdata),
+                            item.ComCode,
+                            currencyCode);
+                    }
                 }
                 foodIndices.Add(foodIndex);
             }

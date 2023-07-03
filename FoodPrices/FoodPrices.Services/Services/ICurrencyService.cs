@@ -12,11 +12,11 @@
         /// <summary>
         /// Convert amount from one currency to another, based on historical rates
         /// </summary>
-        /// <param name="fromCurrencyCode"></param>
         /// <param name="toCurrencyCode"></param>
         /// <param name="amount"></param>
         /// <param name="baseDate"></param>
         /// <returns></returns>
-        Task<decimal> Convert(string fromCurrencyCode, string toCurrencyCode, decimal amount, DateTimeOffset baseDate);
+        /// <exception cref="FoodPrices.Services.Exceptions.CurrencyConversionException">throw when conversion fails</exception>
+        Task<decimal> Convert(string toCurrencyCode, decimal amount, DateTime baseDate);
     }
 }
