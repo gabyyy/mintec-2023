@@ -6,6 +6,6 @@
 
         public decimal ExchangeRate { get; set; }
 
-        public DateTimeOffset ExchangeDate { get; set; }
+        public DateTime ExchangeDate { get; set; }
     }
 }

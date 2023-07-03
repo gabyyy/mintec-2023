@@ -1,4 +1,5 @@
-﻿using FoodPrices.Services.Models;
+﻿using FoodPrices.Services.Converters;
+using FoodPrices.Services.Models;
 using FoodPrices.Services.Options;
 using Microsoft.Extensions.Options;
 using System.Text.Json;
@@ -19,8 +20,12 @@ namespace FoodPrices.Services.Services
         {
             var json = await File.ReadAllTextAsync(this.options.JsonFilePath);
 
+            var options = new JsonSerializerOptions();
+            options.Converters.Add(new DateTimeConverterUsingDateTimeParse(this.options.DateTimeFormat));
+            options.Converters.Add(new CustomDecimalConverter());
+
             //TODO: improve error handling
-            return JsonSerializer.Deserialize<IEnumerable<CurrencyRate>>(json);
+            return JsonSerializer.Deserialize<IEnumerable<CurrencyRate>>(json, options);
         }
     }
 }

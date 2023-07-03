@@ -5,7 +5,7 @@
         /// <summary>
         /// Date of the quote
         /// </summary>
-        public DateTimeOffset Date { get; set; }
+        public DateTime Date { get; set; }
 
         /// <summary>
         /// Highest price

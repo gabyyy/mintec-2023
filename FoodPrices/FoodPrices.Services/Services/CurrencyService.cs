@@ -22,6 +22,12 @@
                 throw new Exception($"Rate not found for {toCurrencyCode} and {baseDate}");
             }
 
+            if (targetRate.ExchangeRate == 0)
+            {
+                //TODO: improve error handling and logging
+                throw new Exception($"Rate not found for {toCurrencyCode} and {baseDate}");
+            }
+
             return amount / targetRate.ExchangeRate;
         }
 
