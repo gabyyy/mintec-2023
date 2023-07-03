@@ -6,7 +6,6 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-//builder.Services.AddTransient<IFoodIndexService, FoodIndexService>();
 builder.Services.AddHttpClient<IFoodIndexService, FoodIndexService>(client =>
 {
     client.BaseAddress = new Uri(builder.Configuration["UrnerBarryBaseUrl"]);
