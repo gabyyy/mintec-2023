@@ -4,6 +4,13 @@ namespace FoodPrices.Services.Services
 {
     public class FoodIndexService : IFoodIndexService
     {
+        private readonly HttpClient httpClient;
+
+        public FoodIndexService(HttpClient httpClient)
+        {
+            this.httpClient = httpClient;
+        }
+
         public Task<IEnumerable<FoodIndex>> GetAll()
         {
             var indices = new FoodIndex[]

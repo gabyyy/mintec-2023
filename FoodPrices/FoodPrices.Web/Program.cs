@@ -1,3 +1,4 @@
+using FoodPrices.Services.Options;
 using FoodPrices.Services.Services;
 using FoodPrices.Web.MappingProfiles;
 using System.Reflection;
@@ -5,7 +6,14 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddTransient<IFoodIndexService, FoodIndexService>();
+//builder.Services.AddTransient<IFoodIndexService, FoodIndexService>();
+builder.Services.AddHttpClient<IFoodIndexService, FoodIndexService>(client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["UrnerBarryBaseUrl"]);
+});
+
+// Options
+builder.Services.Configure<UrnerBarryOptions>(builder.Configuration.GetSection("UrnerBarry"));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
