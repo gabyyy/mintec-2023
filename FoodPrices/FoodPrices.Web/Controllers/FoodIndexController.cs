@@ -24,7 +24,7 @@ namespace FoodPrices.Web.Controllers
         /// <param name="currencyCode" example="ARS"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<FoodIndexDto>>> Get(string currencyCode)
+        public async Task<ActionResult<List<FoodIndexDto>>> Get(string currencyCode)
         {
             var foodIndices = await this.foodIndexService.GetAll(currencyCode);
 

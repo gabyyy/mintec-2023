@@ -20,6 +20,6 @@
         /// <summary>
         /// Collection of quotes
         /// </summary>
-        public IEnumerable<QuoteDto> Quotes { get; set; }
+        public IList<QuoteDto> Quotes { get; set; }
     }
 }

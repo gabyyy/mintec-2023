@@ -9,7 +9,7 @@ namespace FoodPrices.Web.MappingProfiles
         public FoodIndexProfile()
         {
             CreateMap<FoodIndex, FoodIndexDto>();
-            CreateMap<QuoteDto, Quote>();
+            CreateMap<Quote, QuoteDto>();
         }
     }
 }
