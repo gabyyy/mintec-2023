@@ -1,8 +1,8 @@
-﻿namespace FoodPrices.Web.Models
+﻿namespace FoodPrices.Services.Models
 {
-    public class FoodIndexDto
+    public class FoodIndex
     {
-        public FoodIndexDto(int id, string description, DateTimeOffset quoteDate, decimal highPrice)
+        public FoodIndex(int id, string description, DateTimeOffset quoteDate, decimal highPrice)
         {
             Id = id;
             Description = description;
@@ -20,7 +20,7 @@
         /// Description of index
         /// </summary>
         /// <example>Urner Barry Beef Index</example>
-        public string Description { get; set; }        
+        public string Description { get; set; }
 
         /// <summary>
         /// The date of the quote
