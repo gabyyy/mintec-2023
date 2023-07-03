@@ -13,7 +13,7 @@ This is a sample Web API acting as a wrapper around Urner Barry API. If exposes 
 ```
 - Run the application using the `dotnet` CLI or via your favorite IDE
 
-### TODOs and future enhacements
+## TODOs and future enhacements
 - Discuss the logic for currency conversion (currently falling back to latest rate, as JSON only had data till May 2023)
 - Error handling
   - Use global exception filter or middleware
