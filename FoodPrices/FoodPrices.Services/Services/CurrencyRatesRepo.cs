@@ -6,7 +6,6 @@ using System.Text.Json;
 
 namespace FoodPrices.Services.Services
 {
-    //TODO: Add caching decorator or lazy loading
     public class CurrencyRatesRepo : ICurrencyRatesRepo
     {
         private readonly CurrencyRatesOptions options;

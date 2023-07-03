@@ -1,3 +1,4 @@
+using FoodPrices.Services.Decorators;
 using FoodPrices.Services.DelegatingHandlers;
 using FoodPrices.Services.Options;
 using FoodPrices.Services.Services;
@@ -10,10 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddTransient<UrnerBarryAuthenticationHandler>();
 builder.Services.AddTransient<ICurrencyService, CurrencyService>();
 builder.Services.AddTransient<ICurrencyRatesRepo, CurrencyRatesRepo>();
+builder.Services.Decorate<ICurrencyRatesRepo, CurrencyRatesRepoWithCaching>();
 builder.Services.AddHttpClient<IFoodIndexService, FoodIndexService>(client =>
 {
     client.BaseAddress = new Uri(builder.Configuration["UrnerBarry:BaseUrl"]);
 }).AddHttpMessageHandler<UrnerBarryAuthenticationHandler>();
+builder.Services.AddMemoryCache();
 
 // Options
 builder.Services.Configure<UrnerBarryOptions>(builder.Configuration.GetSection("UrnerBarry"));
