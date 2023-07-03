@@ -20,17 +20,17 @@ namespace FoodPrices.Services.Services
 
             if (!isValidCurrency)
             {
-                //TODO: error handling
-                throw new NotImplementedException();
+                //TODO: improve error handling and logging
+                throw new Exception($"Currency {currencyCode} is not supported");
             }
 
-            //TODO error handling (I believe this throws an exception if not success response)
+            //TODO improve error handling and logging (I believe this throws an exception if not success response)
             var myItemResponse = await this.httpClient.GetFromJsonAsync<MyItemsResponse>("api/myitems/data");
 
             if (myItemResponse == null)
             {
-                //TODO error handling
-                throw new NotImplementedException();
+                //TODO improve error handling and logging
+                throw new Exception($"An error has occured");
             }
 
             var foodIndices = new List<FoodIndex>();
@@ -39,7 +39,8 @@ namespace FoodPrices.Services.Services
                 var foodIndex = new FoodIndex(item.ComCode, item.Description);
                 foreach (var marketdata in item.MarketData)
                 {
-                    var convertedAmount = await this.currencyService.Convert("GBP", currencyCode, marketdata.High, marketdata.QuoteDate);
+                    //TODO: take currency code from items[].currency
+                    var convertedAmount = await this.currencyService.Convert("USD", currencyCode, marketdata.High, marketdata.QuoteDate);
                     foodIndex.Quotes.Add(new Quote()
                     {
                         HighPrice = convertedAmount,

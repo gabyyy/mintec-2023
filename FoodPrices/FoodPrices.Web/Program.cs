@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddTransient<UrnerBarryAuthenticationHandler>();
+builder.Services.AddTransient<ICurrencyService, CurrencyService>();
+builder.Services.AddTransient<ICurrencyRatesRepo, CurrencyRatesRepo>();
 builder.Services.AddHttpClient<IFoodIndexService, FoodIndexService>(client =>
 {
     client.BaseAddress = new Uri(builder.Configuration["UrnerBarry:BaseUrl"]);
@@ -15,6 +17,7 @@ builder.Services.AddHttpClient<IFoodIndexService, FoodIndexService>(client =>
 
 // Options
 builder.Services.Configure<UrnerBarryOptions>(builder.Configuration.GetSection("UrnerBarry"));
+builder.Services.Configure<CurrencyRatesOptions>(builder.Configuration.GetSection("CurrencyRates"));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
