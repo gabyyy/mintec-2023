@@ -2,6 +2,13 @@
 {
     public class FoodIndex
     {
+        public FoodIndex(int id, string description)
+        {
+            Id = id;
+            Description = description;
+            Quotes = new List<Quote>();
+        }
+
         /// <summary>
         /// Unique identifier
         /// </summary>
@@ -17,6 +24,7 @@
         /// <summary>
         /// Collection of quotes
         /// </summary>
-        public IEnumerable<Quote> Quotes { get; set; }
+        public IList<Quote> Quotes { get; set; }
+        
     }
 }
