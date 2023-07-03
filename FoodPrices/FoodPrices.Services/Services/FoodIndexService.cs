@@ -1,4 +1,5 @@
 ﻿using FoodPrices.Services.Models;
+using System.Net.Http.Json;
 
 namespace FoodPrices.Services.Services
 {
@@ -11,13 +12,23 @@ namespace FoodPrices.Services.Services
             this.httpClient = httpClient;
         }
 
-        public Task<IEnumerable<FoodIndex>> GetAll()
+        public async Task<IEnumerable<FoodIndex>> GetAll()
         {
-            var indices = new FoodIndex[]
+            //TODO error handling (I believe this throws an exception if not success response)
+            var myItemResponse = await this.httpClient.GetFromJsonAsync<MyItemsResponse>("api/myitems/data");
+
+            if (myItemResponse == null)
             {
-                new(4915, "Urner Barry Beef Index", new DateTimeOffset(new DateTime(2023, 6, 30), new TimeSpan()), 3.1488167999999996m)
-            };
-            return Task.FromResult(indices.AsEnumerable());
+                //TODO error handling
+                throw new NotImplementedException();
+            }
+
+            foreach (var item in myItemResponse.Items)
+            {
+                //TODO: map, and convert currency
+            }
+
+            throw new NotImplementedException();
         }
     }
 }
