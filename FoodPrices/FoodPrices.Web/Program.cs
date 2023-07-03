@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddHttpClient<IFoodIndexService, FoodIndexService>(client =>
 {
-    client.BaseAddress = new Uri(builder.Configuration["UrnerBarryBaseUrl"]);
+    client.BaseAddress = new Uri(builder.Configuration["UrnerBarry:BaseUrl"]);
 });
 
 // Options
