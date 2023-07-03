@@ -1,8 +1,10 @@
+using FoodPrices.Services.Services;
 using FoodPrices.Web.MappingProfiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddTransient<IFoodIndexService, FoodIndexService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

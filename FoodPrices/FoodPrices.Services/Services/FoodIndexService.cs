@@ -2,7 +2,7 @@
 
 namespace FoodPrices.Services.Services
 {
-    internal class FoodIndexService : IFoodIndexService
+    public class FoodIndexService : IFoodIndexService
     {
         public Task<IEnumerable<FoodIndex>> GetAll()
         {
