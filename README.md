@@ -15,6 +15,7 @@ This is a sample Web API acting as a wrapper around Urner Barry API. If exposes 
 
 ## TODOs and future enhacements
 - Discuss the logic for currency conversion (currently falling back to the latest rate, as JSON only had data till May 2023)
+- API should support `USD` currency code and return same quote values as raw API :)
 - Error handling
   - Use global exception filter or middleware
   - Return `ProblemDetails` model on errors
