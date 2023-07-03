@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\FoodPrices.Services\FoodPrices.Services.csproj" />
+    <ProjectReference Include="..\..\src\FoodPrices.Services\FoodPrices.Services.csproj" />
   </ItemGroup>
 
 </Project>
