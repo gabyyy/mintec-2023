@@ -4,6 +4,6 @@ namespace FoodPrices.Services.Services
 {
     public interface IFoodIndexService
     {
-        Task<IEnumerable<FoodIndex>> GetAll();
+        Task<IEnumerable<FoodIndex>> GetAll(string currency);
     }
 }

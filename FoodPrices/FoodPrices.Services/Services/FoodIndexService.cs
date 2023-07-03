@@ -12,7 +12,7 @@ namespace FoodPrices.Services.Services
             this.httpClient = httpClient;
         }
 
-        public async Task<IEnumerable<FoodIndex>> GetAll()
+        public async Task<IEnumerable<FoodIndex>> GetAll(string currencyCode)
         {
             //TODO error handling (I believe this throws an exception if not success response)
             var myItemResponse = await this.httpClient.GetFromJsonAsync<MyItemsResponse>("api/myitems/data");

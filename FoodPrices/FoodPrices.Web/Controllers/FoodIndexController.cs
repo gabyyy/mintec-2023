@@ -19,14 +19,14 @@ namespace FoodPrices.Web.Controllers
         }
 
         /// <summary>
-        /// Return all food indices
+        /// Return all food indices in a given currency
         /// </summary>
+        /// <param name="currencyCode" example="ARS"></param>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<FoodIndexDto>>> Get()
+        public async Task<ActionResult<IEnumerable<FoodIndexDto>>> Get(string currencyCode)
         {
-            var foodIndices = await this.foodIndexService.GetAll();
+            var foodIndices = await this.foodIndexService.GetAll(currencyCode);
 
             return this.mapper.Map<List<FoodIndexDto>>(foodIndices);
         }
