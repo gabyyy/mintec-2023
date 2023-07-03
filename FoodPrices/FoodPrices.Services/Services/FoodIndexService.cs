@@ -25,7 +25,7 @@ namespace FoodPrices.Services.Services
 
             if (!isValidCurrency)
             {
-                //TODO: improve error handling and logging
+                //TODO: improve error handling and logging (add exception filter or middleware to return nicer error messages)
                 throw new Exception($"Currency {currencyCode} is not supported");
             }
 
@@ -39,6 +39,8 @@ namespace FoodPrices.Services.Services
             }
 
             var foodIndices = new List<FoodIndex>();
+
+            // This should be refactored to kick off multiple simultaneous tasks
             foreach (var item in myItemResponse.Items)
             {
                 var foodIndex = new FoodIndex(item.ComCode, item.Description);

@@ -20,7 +20,6 @@ namespace FoodPrices.Services.Services
             {
                 var rates = await this.currencyRatesRepo.GetAll();
 
-                //TODO: improve logic as we might not always find exact date?
                 var targetRate = rates.SingleOrDefault(x => x.CurrencyCode == toCurrencyCode && x.ExchangeDate == baseDate);
 
                 if (targetRate == null)
@@ -31,7 +30,7 @@ namespace FoodPrices.Services.Services
                     targetRate = rates.Where(x => x.CurrencyCode == toCurrencyCode).MaxBy(x => x.ExchangeDate);
                 }
 
-                if (targetRate.ExchangeRate == 0)
+                if (targetRate?.ExchangeRate == 0)
                 {
                     //TODO: improve error handling and logging
                     throw new CurrencyConversionException($"Rate not found for {toCurrencyCode} and {baseDate}");
@@ -41,6 +40,7 @@ namespace FoodPrices.Services.Services
             }
             catch (Exception e)
             {
+                this.logger.LogError(e, "An exception occured");
                 throw new CurrencyConversionException("An error occured while during currency conversion");
             }            
         }
